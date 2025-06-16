@@ -24,5 +24,6 @@ jobs:
 
       - name: Test AWS CLI connection
         run: aws s3 ls
+
       - name: Get GitHub Username
         run: echo "GitHub Username: ${{ github.actor }}"
