@@ -26,4 +26,4 @@ jobs:
         run: aws s3 ls
 
       - name: Get GitHub Username
-        run: echo "GitHub Username: ${{ github.actor }}"
+        run: echo "GitHub Username" #: ${{ github.actor }}"
