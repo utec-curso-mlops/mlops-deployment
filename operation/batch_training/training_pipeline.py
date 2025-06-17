@@ -5,6 +5,11 @@ from sagemaker.workflow.condition_step import ConditionStep
 from sagemaker.workflow.conditions import ConditionGreaterThanOrEqualTo
 from sagemaker.workflow.fail_step import FailStep
 from sagemaker.workflow.parameters import ParameterInteger
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from steps.data_pull import data_pull
 from steps.model_evaluation import evaluate
 from steps.model_registration import register
