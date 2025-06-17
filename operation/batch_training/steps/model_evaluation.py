@@ -8,8 +8,7 @@ instance_type = "ml.m5.large"
 @step(
     name="ModelEvaluation",
     instance_type=instance_type,
-    #job_conda_env = "../environment.yml",
-    image_uri = "arn:aws:sagemaker:us-east-1:885854791233:image/sagemaker-base-python-v4",
+    image_uri="arn:aws:sagemaker:us-east-1:885854791233:image/sagemaker-base-python-v4",
     dependencies="./model_training_requirements.txt"
 )
 def evaluate(
