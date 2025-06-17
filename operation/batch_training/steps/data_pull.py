@@ -6,7 +6,7 @@ print(sys.path)
 print(os.path.join(os.path.dirname(__file__)))
 print((os.path.join(os.path.dirname(__file__), '...')))
 
-from operation.batch_training.batch_training_utils import TRACKING_SERVER_ARN, DEFAULT_PATH
+from batch_training.batch_training_utils import TRACKING_SERVER_ARN, DEFAULT_PATH
 from sagemaker.workflow.function_step import step
 
 
