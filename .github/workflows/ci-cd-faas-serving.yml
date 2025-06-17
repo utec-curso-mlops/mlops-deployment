@@ -33,11 +33,10 @@ jobs:
       - name: Push image
         run: docker push "${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest"
       - name: Create Lambda function
-        run: aws lambda create-function \
-          --function-name "mlops-utec-${{ github.actor }}-online-prediction-faas" \
-          --package-type Image \
-          --code ImageUri="${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest" \
-          --role ${{ vars.LAMBDA_ROLE }} \
-          --architectures x86_64 \
-          --region us-east-1 \
-          --timeout 120
+        run: aws lambda create-function --function-name "mlops-utec-${{ github.actor }}-online-prediction-faas" \
+             --package-type Image \
+             --code ImageUri="${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest" \
+             --role ${{ vars.LAMBDA_ROLE }} \
+             --architectures x86_64 \
+             --region us-east-1 \
+             --timeout 120
