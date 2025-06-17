@@ -28,7 +28,7 @@ jobs:
       - name: Build image
         run: docker build -t "utec-mlops/${{ github.actor }}/online-prediction-faas" operation/online_inference_faas
       - name: Tag image
-        run: docker tag "${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest"
+        run: docker tag "utec-mlops/${{ github.actor }}/online-prediction-faas:latest" "${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest"
       - name: Push image
         run: docker push "${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest"
       - name: Create Lambda function
