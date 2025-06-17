@@ -1,6 +1,10 @@
 import boto3
 import json
-#from ..faas_utils import FUNCTION_NAME
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__),os.pardir)))
+from faas_utils import FUNCTION_NAME
+
 FUNCTION_NAME = "mlops-utec-rickpuma-online-prediction-faas"
 
 def test_lambda_invocation():
