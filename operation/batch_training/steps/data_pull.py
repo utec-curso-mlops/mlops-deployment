@@ -1,5 +1,12 @@
+import sys 
+import os
+
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from ..batch_training_utils import TRACKING_SERVER_ARN, DEFAULT_PATH
 from sagemaker.workflow.function_step import step
+
+
 
 # Global variables
 instance_type = "ml.m5.large"
