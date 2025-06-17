@@ -8,10 +8,10 @@ from sagemaker.workflow.conditions import ConditionGreaterThanOrEqualTo
 from sagemaker.workflow.fail_step import FailStep
 from sagemaker.workflow.parameters import ParameterInteger
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from operation.batch_training.steps.data_pull import data_pull
-from operation.batch_training.steps.model_evaluation import evaluate
-from operation.batch_training.steps.model_registration import register
-from operation.batch_training.steps.model_training import train
+from steps.data_pull import data_pull
+from steps.model_evaluation import evaluate
+from steps.model_registration import register
+from steps.model_training import train
 
 
 from batch_training_utils import MODEL_NAME, USERNAME, ENV_CODE, PIPELINE_NAME, ROLE
