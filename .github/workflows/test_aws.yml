@@ -22,5 +22,7 @@ jobs:
       - name: Test AWS CLI connection
         run: aws s3 ls
 
-      - name: Get GitHub Username
-        run: echo ${{ github.actor }}
+      - name: Run Python script with GitHub actor
+        run: python script.py
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
