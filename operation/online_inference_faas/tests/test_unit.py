@@ -1,23 +1,23 @@
+import boto3
 import pytest
-import mlflow
-import mlflow.xgboost
-from faas_utils import TRACKING_SERVER_ARN
+from botocore.exceptions import ClientError
 
-mlflow.set_tracking_uri(TRACKING_SERVER_ARN)
-
-def model_exists(model_uri):
-    """Checks if the model exists in the MLflow Model Registry."""
+def s3_path_exists(bucket_name, key):
+    """Checks if an S3 object (path) exists."""
+    s3_client = boto3.client("s3")
     try:
-        mlflow.xgboost.load_model(model_uri)
+        s3_client.head_object(Bucket=bucket_name, Key=key)
         return True
-    except mlflow.exceptions.MlflowException:
-        return False
+    except ClientError as e:
+        if e.response["Error"]["Code"] == "404":
+            return False
+        raise
 
-@pytest.mark.parametrize("model_uri", [
-    "models:/credit-card-fraud-detection/latest",  # Registered model with version 1
-    "models:/churn-detection/1" # A model that doesn't exist
+@pytest.mark.parametrize("bucket_name, key, expected", [
+    ("mlops-utec", "mlflow-server/1/52ce21cdfba8475dae1bfafd337609e4/artifacts/model/model.xgb", True),  # Object exists
+    ("mlops-utec", "mlflow-server/1/52ce21cdfba8475dae1bfafd337609e4/artifacts/model/model.torch", False) # Object does not exist
 ])
-def test_model_registry(model_uri):
-    """Test if model exists in MLflow registry."""
-    assert model_exists(model_uri), f"Model '{model_uri}' does not exist!"
+def test_s3_path(bucket_name, key, expected):
+    """Test if an S3 path exists or not."""
+    assert s3_path_exists(bucket_name, key) == expected, f"Path '{key}' existence does not match expected value!"
 
