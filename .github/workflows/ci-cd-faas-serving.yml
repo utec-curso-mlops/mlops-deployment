@@ -25,6 +25,8 @@ jobs:
           aws-access-key-id: ${{ secrets.ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.SECRET_KEY }}
           aws-region: us-east-1
+      - name: Unit testing
+        run:  pytest operation/online_inference_faas/tests/test_unit.py -vv
       - name: Login to ECR
         run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ vars.ECR_URL }}
       - name: Create ECR repository if it doesn't exist
@@ -68,5 +70,5 @@ jobs:
               --function-name "$FUNCTION_NAME" \
               --image-uri "$IMAGE_URI"
           fi
-      - name: Test Lambda function
+      - name: Integration testing
         run:  pytest operation/online_inference_faas/tests/test_integration.py -vv

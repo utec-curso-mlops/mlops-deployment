@@ -1,6 +1,7 @@
 import boto3
 import json
-from ..faas_utils import FUNCTION_NAME
+#from ..faas_utils import FUNCTION_NAME
+FUNCTION_NAME = "mlops-utec-rickpuma-online-prediction-faas"
 
 def test_lambda_invocation():
     client = boto3.client('lambda')

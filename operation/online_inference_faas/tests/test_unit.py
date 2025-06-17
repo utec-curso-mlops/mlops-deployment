@@ -5,10 +5,6 @@ from faas_utils import TRACKING_SERVER_ARN
 
 mlflow.set_tracking_uri(TRACKING_SERVER_ARN)
 
-model_name = "credit-card-fraud-detection"
-model_version = "latest"
-model_uri = f"models:/{model_name}/{model_version}"
-
 def model_exists(model_uri):
     """Checks if the model exists in the MLflow Model Registry."""
     try:
