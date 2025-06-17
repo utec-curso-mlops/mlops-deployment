@@ -1,4 +1,4 @@
-from batch_training_utils import TRACKING_SERVER_ARN, DEFAULT_PATH
+from batch_training_utils import TRACKING_SERVER_ARN, DEFAULT_PATH, SAGEMAKER_ROLE
 from sagemaker.workflow.function_step import step
 
 # Global variables
@@ -9,7 +9,8 @@ instance_type = "ml.m5.large"
     name="ModelTraining",
     instance_type=instance_type,
     image_uri="arn:aws:sagemaker:us-east-1:885854791233:image/sagemaker-base-python-v4",
-    dependencies="./model_training_requirements.txt"
+    dependencies="./model_training_requirements.txt",
+    role = SAGEMAKER_ROLE
 )
 def train(train_s3_path: str, experiment_name: str,
                    run_id: str) -> tuple[str, str, str, str]:
