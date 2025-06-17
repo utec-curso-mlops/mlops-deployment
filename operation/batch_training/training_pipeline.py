@@ -13,7 +13,7 @@ from steps.model_registration import register
 from steps.model_training import train
 
 
-from batch_training_utils import MODEL_NAME, USERNAME, ENV_CODE, PIPELINE_NAME, ROLE
+from batch_training_utils import MODEL_NAME, USERNAME, ENV_CODE, PIPELINE_NAME, SAGEMAKER_ROLE
 
 #MLFlow setting
 experiment_name = f"pipeline-train-{ENV_CODE}-{USERNAME}"
@@ -62,5 +62,5 @@ pipeline = Pipeline(name=PIPELINE_NAME,
                     steps=[data_pull_step, model_training_step,
                            conditional_register_step],
                     parameters=[cod_month_start, cod_month_end])
-pipeline.upsert(role_arn=ROLE)
+pipeline.upsert(role_arn=SAGEMAKER_ROLE)
 
