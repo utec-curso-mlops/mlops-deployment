@@ -69,4 +69,4 @@ jobs:
               --image-uri "$IMAGE_URI"
           fi
       - name: Test Lambda function
-        run:  pytest operation/online_inference_faas/tests/
+        run:  pytest operation/online_inference_faas/tests/integration_test.py -vv
