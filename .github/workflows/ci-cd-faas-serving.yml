@@ -24,8 +24,15 @@ jobs:
       - name: Login to ECR
         run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ vars.ECR_URL }}
       - name: Create ECR repository
-        run: aws ecr describe-repositories --repository-name "utec-mlops/${{ github.actor }}/online-prediction-faas" || \
-             aws ecr create-repository --repository-name "utec-mlops/${{ github.actor }}/online-prediction-faas"
+        run: |
+          REPO_NAME = "utec-mlops/${{ github.actor }}/online-prediction-faas"
+          EXISTING_REPO=$(aws ecr describe-repositories --repository-name "$REPO_NAME" 2>&1 || echo "NOT_FOUND")
+          if [[ "$EXISTING_REPO" == *"RepositoryNotFoundException"* ]]; then
+            echo "Repository does not exist. Creating..."
+            aws ecr create-repository --repository-name "$REPO_NAME"
+          else
+            echo "Repository exists."
+          fi
       - name: Build image
         run: docker build -t "utec-mlops/${{ github.actor }}/online-prediction-faas" operation/online_inference_faas
       - name: Tag image
