@@ -27,18 +27,16 @@ jobs:
         run: aws ecr create-repository --repository-name "utec-mlops/${{ github.actor }}/online-prediction-faas"
       - name: Build image
         run: docker build -t "utec-mlops/${{ github.actor }}/online-prediction-faas" operation/online_inference_faas
-
-
-# !docker build -t $repository_name .
-
-# ecr_url = "654654589924.dkr.ecr.us-east-1.amazonaws.com"
-# tag_name = f"{repository_name}:latest"
-# full_tag_name = f"{ecr_url}/{tag_name}"
-
-# !docker tag $tag_name $full_tag_name
-
-# !docker push $full_tag_name
-
-# function_name = f"mlops-utec-{USERNAME}-online-prediction"
-# print(function_name)
-# lambda_role = "arn:aws:iam::654654589924:role/utec-lambda-mlops-role"
+      - name: Tag image
+        run: docker tag "${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest"
+      - name: Push image
+        run: docker push "${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest"
+      - name: Create Lambda function
+        run: aws lambda create-function \
+          --function-name "mlops-utec-${{ github.actor }}-online-prediction-faas" \
+          --package-type Image \
+          --code ImageUri="${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest" \
+          --role ${{ vars.LAMBDA_ROLE }} \
+          --architectures x86_64 \
+          --region us-east-1 \
+          --timeout 120
