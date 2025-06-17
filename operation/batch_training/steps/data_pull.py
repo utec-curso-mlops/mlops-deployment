@@ -10,7 +10,8 @@ instance_type = "ml.m5.large"
 @step(
     name="DataPull",
     instance_type=instance_type,
-    image_uri="public.ecr.aws/sagemaker/sagemaker-distribution:3.1.0-cpu",
+    #image_uri="public.ecr.aws/sagemaker/sagemaker-distribution:3.1.0-cpu",
+    image_uri="885854791233.dkr.ecr.us-east-1.amazonaws.com/sagemaker-distribution-prod@sha256:92cfd41f9293e3cfbf58f3bf728348fbb298bca0eeea44464968f08622d78ed0",
     #dependencies="/steps/data_pull_requirements.txt",
     role=SAGEMAKER_ROLE
 )
