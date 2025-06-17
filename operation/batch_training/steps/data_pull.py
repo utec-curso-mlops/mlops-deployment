@@ -10,6 +10,7 @@ instance_type = "ml.m5.large"
 @step(
     name="DataPull",
     instance_type=instance_type,
+    job_conda_env = "../environment.yml",
     dependencies="./data_pull_requirements.txt"
 )
 def data_pull(experiment_name: str, run_name: str,

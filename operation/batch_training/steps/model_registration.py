@@ -8,6 +8,7 @@ instance_type = "ml.m5.large"
 @step(
     name="ModelRegistration",
     instance_type=instance_type,
+    job_conda_env = "../environment.yml",
     dependencies="./model_training_requirements.txt"
 )
 def register(
