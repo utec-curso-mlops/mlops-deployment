@@ -9,7 +9,7 @@ instance_type = "ml.m5.large"
     name="ModelEvaluation",
     instance_type=instance_type,
     image_uri="arn:aws:sagemaker:us-east-1:885854791233:image/sagemaker-base-python-v4",
-    dependencies="model_training_requirements.txt",
+    #dependencies="model_training_requirements.txt",
     role=SAGEMAKER_ROLE
 )
 def evaluate(
@@ -18,6 +18,9 @@ def evaluate(
     run_id: str,
     training_run_id: str,
 ) -> dict:
+    
+    import subprocess
+    subprocess.run(['pip', 'install', 'mlflow==2.13.2', 'sagemaker-mlflow==0.1.0']) 
     import mlflow
     import pandas as pd
     TARGET_COL = "is_fraud"
