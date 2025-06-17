@@ -1,4 +1,4 @@
-from batch_inference_utils import TRACKING_SERVER_ARN, DEFAULT_PATH, SAGEMAKER_ROLE, MODEL_NAME
+from batch_inference_utils import TRACKING_SERVER_ARN, DEFAULT_PATH, SAGEMAKER_ROLE, MODEL_NAME, USERNAME
 from sagemaker.workflow.function_step import step
 
 # Global variables
@@ -40,7 +40,7 @@ def data_push(inf_proc_s3_path: str,experiment_name: str,run_id: str, cod_month:
     inf_posproc_s3_path = f"s3://{DEFAULT_PATH}/inf-posproc-data"
     inf_posproc_s3_path_partition = inf_posproc_s3_path + f'/{TIME_COL}={cod_month}/output.parquet'
     database = 'risk_management'
-    table_name = database + f'.fraud_detection_{user.replace("-", "_")}'
+    table_name = database + f'.fraud_detection_{USERNAME}'
 
     # Pushing data to S3 path
     df = df[[ID_COL, PRED_COL, 'model','fraud_profile','load_date', 'order', TIME_COL]] 

@@ -1,12 +1,21 @@
 import mlflow
 import json
-from faas_utils import TRACKING_SERVER_ARN, MODEL_NAME, MODEL_VERSION
+#from faas_utils import TRACKING_SERVER_ARN, MODEL_NAME, MODEL_VERSION
 
 # Load model
-model_uri = f"models:/{MODEL_NAME}/{MODEL_VERSION}"
+# Load model
+model_name = "credit-card-fraud-detection"
+model_version = "latest"
+model_uri = f"models:/{model_name}/{model_version}"
 
 # Set tracking server
-mlflow.set_tracking_uri(TRACKING_SERVER_ARN)
+tracking_server_arn = 'arn:aws:sagemaker:us-east-1:654654589924:mlflow-tracking-server/mlops-utec-mlflow-server'
+
+#model_uri = f"models:/{MODEL_NAME}/{MODEL_VERSION}"
+
+# Set tracking server
+#mlflow.set_tracking_uri(TRACKING_SERVER_ARN)
+mlflow.set_tracking_uri(tracking_server_arn)
 model = mlflow.xgboost.load_model(model_uri)
 
 

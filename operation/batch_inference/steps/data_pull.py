@@ -1,8 +1,6 @@
 from batch_inference_utils import TRACKING_SERVER_ARN, DEFAULT_PATH, SAGEMAKER_ROLE
 from sagemaker.workflow.function_step import step
 
-
-
 # Global variables
 instance_type = "ml.m5.large"
 image_uri = "885854791233.dkr.ecr.us-east-1.amazonaws.com/sagemaker-distribution-prod@sha256:92cfd41f9293e3cfbf58f3bf728348fbb298bca0eeea44464968f08622d78ed0"
