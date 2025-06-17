@@ -25,7 +25,7 @@ jobs:
         run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ vars.ECR_URL }}
       - name: Create ECR repository
         run: |
-          REPO_NAME = "utec-mlops/${{ github.actor }}/online-prediction-faas"
+          REPO_NAME="utec-mlops/${{ github.actor }}/online-prediction-faas"
           EXISTING_REPO=$(aws ecr describe-repositories --repository-name "$REPO_NAME" 2>&1 || echo "NOT_FOUND")
           if [[ "$EXISTING_REPO" == *"RepositoryNotFoundException"* ]]; then
             echo "Repository does not exist. Creating..."
