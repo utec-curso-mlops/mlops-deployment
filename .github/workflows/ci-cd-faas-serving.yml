@@ -39,12 +39,28 @@ jobs:
         run: docker tag "utec-mlops/${{ github.actor }}/online-prediction-faas:latest" "${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest"
       - name: Push image
         run: docker push "${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest"
-      - name: Create Lambda function
-        run: aws lambda create-function \
-            --function-name "mlops-utec-${{ github.actor }}-online-prediction-faas" \
-            --package-type Image \
-            --code ImageUri="${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest" \
-            --role ${{ vars.LAMBDA_ROLE }} \
-            --architectures x86_64 \
-            --region us-east-1 \
-            --timeout 120
+      - name: Create or update Lambda function
+        run: |
+          FUNCTION_NAME="mlops-utec-${{ github.actor }}-online-prediction-faas"
+          ROLE_ARN="${{ vars.LAMBDA_ROLE }}"
+          IMAGE_URI="${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest"
+
+          # Check if Lambda function exists
+          EXISTING_FUNCTION=$(aws lambda get-function --function-name "$FUNCTION_NAME" 2>&1 || echo "NOT_FOUND")
+
+          if [[ "$EXISTING_FUNCTION" == *"ResourceNotFoundException"* ]]; then
+            echo "Creating Lambda function..."
+            aws lambda create-function \
+              --function-name "$FUNCTION_NAME" \
+              --package-type Image \
+              --code "ImageUri=$IMAGE_URI" \
+              --role "$ROLE_ARN" \
+              --architectures x86_64 \
+              --region us-east-1 \
+              --timeout 120
+          else
+            echo "Updating Lambda function..."
+            aws lambda update-function-code \
+              --function-name "$FUNCTION_NAME" \
+              --image-uri "$IMAGE_URI"
+          fi
