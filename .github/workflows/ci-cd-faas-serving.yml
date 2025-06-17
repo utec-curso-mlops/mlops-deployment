@@ -24,7 +24,8 @@ jobs:
       - name: Login to ECR
         run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ vars.ECR_URL }}
       - name: Create ECR repository
-        run: aws ecr create-repository --repository-name "utec-mlops/${{ github.actor }}/online-prediction-faas"
+        run: aws ecr describe-repositories --repository-name "utec-mlops/${{ github.actor }}/online-prediction-faas" || \
+             aws ecr create-repository --repository-name "utec-mlops/${{ github.actor }}/online-prediction-faas"
       - name: Build image
         run: docker build -t "utec-mlops/${{ github.actor }}/online-prediction-faas" operation/online_inference_faas
       - name: Tag image
