@@ -7,7 +7,7 @@ on:
 
 jobs:
   training-pipeline:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04 #ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
