@@ -1,5 +1,3 @@
-import sys
-import os 
 from sagemaker.workflow.pipeline import Pipeline
 from sagemaker.workflow.parameters import ParameterInteger
 from sagemaker.workflow.execution_variables import ExecutionVariables
