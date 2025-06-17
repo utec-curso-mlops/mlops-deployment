@@ -1,6 +1,11 @@
 import sagemaker
+import sys
+import os
 
-from ..utils import DEFAULT_BUCKET, ENV_CODE, TRACKING_SERVER_ARN, USERNAME, ENV_CODE
+print(sys.path)
+print(os.path.abspath(os.path.join(os.path.dirname(__file__))))
+
+from utils import DEFAULT_BUCKET, ENV_CODE, TRACKING_SERVER_ARN, USERNAME, ENV_CODE
 
 # Sagemaker configuration
 ROLE = sagemaker.get_execution_role()
