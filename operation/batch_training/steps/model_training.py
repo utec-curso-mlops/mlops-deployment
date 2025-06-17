@@ -1,4 +1,4 @@
-from batch_training_utils import TRACKING_SERVER_ARN, DEFAULT_PATH, SAGEMAKER_ROLE, IMAGE_URI
+from batch_training_utils import TRACKING_SERVER_ARN, DEFAULT_PATH, SAGEMAKER_ROLE
 from sagemaker.workflow.function_step import step
 
 # Global variables
