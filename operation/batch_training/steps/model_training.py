@@ -10,7 +10,7 @@ instance_type = "ml.m5.large"
     instance_type=instance_type,
     image_uri="arn:aws:sagemaker:us-east-1:885854791233:image/sagemaker-base-python-v4",
     dependencies="./model_training_requirements.txt",
-    role = SAGEMAKER_ROLE
+    role=SAGEMAKER_ROLE
 )
 def train(train_s3_path: str, experiment_name: str,
                    run_id: str) -> tuple[str, str, str, str]:

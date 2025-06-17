@@ -11,8 +11,8 @@ instance_type = "ml.m5.large"
     name="DataPull",
     instance_type=instance_type,
     image_uri="arn:aws:sagemaker:us-east-1:885854791233:image/sagemaker-base-python-v4",
-    dependencies="./data_pull_requirements.txt"
-    role = SAGEMAKER_ROLE
+    dependencies="./data_pull_requirements.txt",
+    role=SAGEMAKER_ROLE
 )
 def data_pull(experiment_name: str, run_name: str,
               cod_month_start: int, cod_month_end: int) -> tuple[str, str, str]:
