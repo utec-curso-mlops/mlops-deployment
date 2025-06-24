@@ -39,7 +39,8 @@ def lambda_handler(event, context):
             "trx_vel_last_1mths": event['body']['data']["trx_vel_last_1mths"],
             "trx_vel_last_2mths": event['body']['data']["trx_vel_last_2mths"],
             "amt_vel_last_1mths": Decimal(str(event['body']['data']["amt_vel_last_1mths"])),
-            "amt_vel_last_2mths": Decimal(str(event['body']['data']["amt_vel_last_2mths"]))
+            "amt_vel_last_2mths": Decimal(str(event['body']['data']["amt_vel_last_2mths"])),
+            "prediction": Decimal(str(float(pred))),
         }
     )
     # Return prediction
