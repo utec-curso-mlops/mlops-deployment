@@ -71,8 +71,11 @@ jobs:
             echo "Updating Lambda function..."
             aws lambda update-function-code \
               --function-name "$FUNCTION_NAME" \
-              --image-uri "$IMAGE_URI" \
-              --environment "Variables={MODEL_NAME=${{ env.MODEL_NAME }},MODEL_VERSION=${{ env.MODEL_VERSION }},TRACKING_SERVER_ARN=${{ env.TRACKING_SERVER_ARN }},LOG_TABLE=${{ env.LOG_TABLE }}}"
+              --image-uri "$IMAGE_URI"
+            echo "Updating Lambda configuration..."
+            aws lambda update-function-configuration \
+              --function-name "$FUNCTION_NAME" \
+              --environment "Variables={MODEL_NAME=${{ env.MODEL_NAME }},MODEL_VERSION=${{ env.MODEL_VERSION }},TRACKING_SERVER_ARN=${{ env.TRACKING_SERVER_ARN }},LOG_TABLE=${{ env.LOG_TABLE }}}" 
           fi
       - name: Integration testing
         run:  pytest operation/online_inference_faas/tests/test_integration.py -vv
