@@ -53,7 +53,6 @@ jobs:
           FUNCTION_NAME="mlops-utec-${{ github.actor }}-online-prediction-faas"
           ROLE_ARN="${{ vars.LAMBDA_ROLE }}"
           IMAGE_URI="${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest"
-
           # Check if Lambda function exists
           EXISTING_FUNCTION=$(aws lambda get-function --function-name "$FUNCTION_NAME" 2>&1 || echo "NOT_FOUND")
 
@@ -72,7 +71,8 @@ jobs:
             echo "Updating Lambda function..."
             aws lambda update-function-code \
               --function-name "$FUNCTION_NAME" \
-              --image-uri "$IMAGE_URI"
+              --image-uri "$IMAGE_URI" \
+              --environment "Variables={MODEL_NAME=${{ env.MODEL_NAME }},MODEL_VERSION=${{ env.MODEL_VERSION }},TRACKING_SERVER_ARN=${{ env.TRACKING_SERVER_ARN }},LOG_TABLE=${{ env.LOG_TABLE }}}" \
           fi
       - name: Integration testing
         run:  pytest operation/online_inference_faas/tests/test_integration.py -vv
