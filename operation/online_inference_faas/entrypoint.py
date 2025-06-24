@@ -33,7 +33,7 @@ def lambda_handler(event, context):
 
     response = table.put_item(
         Item= {
-            "transaction_id" : event['body']['data']["transacion_id"],
+            "transaction_id" : event['body']['data']["transaction_id"],
             "cod_month": event['body']['data']["cod_month"],
             "card_present": event['body']['data']["card_present"],
             "trx_vel_last_1mths": event['body']['data']["trx_vel_last_1mths"],

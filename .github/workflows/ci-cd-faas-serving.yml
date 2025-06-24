@@ -72,10 +72,6 @@ jobs:
             aws lambda update-function-code \
               --function-name "$FUNCTION_NAME" \
               --image-uri "$IMAGE_URI"
-            echo "Updating Lambda configuration..."
-            aws lambda update-function-configuration \
-              --function-name "$FUNCTION_NAME" \
-              --environment "Variables={MODEL_NAME=${{ env.MODEL_NAME }},MODEL_VERSION=${{ env.MODEL_VERSION }},TRACKING_SERVER_ARN=${{ env.TRACKING_SERVER_ARN }},LOG_TABLE=${{ env.LOG_TABLE }}}" 
           fi
       - name: Wait for Lambda creation
         run:  sleep 5
