@@ -10,7 +10,7 @@ TRACKING_SERVER_ARN = TRACKING_SERVER_ARN
 USERNAME = USERNAME
 ENV_CODE = ENV_CODE
 FUNCTION_NAME = f"mlops-utec-{USERNAME}-online-prediction-faas"
-LOG_TABLE = "mlops-utec-table-fraud-faas-log-{USERNAME}"
+LOG_TABLE = f"mlops-utec-table-fraud-faas-log-{USERNAME}"
 
 # Setting environment variables
 with open(os.environ["GITHUB_ENV"], "a") as f:
