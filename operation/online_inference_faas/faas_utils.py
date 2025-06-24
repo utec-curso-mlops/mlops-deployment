@@ -13,13 +13,8 @@ FUNCTION_NAME = f"mlops-utec-{USERNAME}-online-prediction-faas"
 LOG_TABLE = "mlops-utec-table-fraud-faas-log-{USERNAME}"
 
 # Setting environment variables
-# os.environ["MODEL_NAME"] = MODEL_NAME
-# os.environ["MODEL_VERSION"] = MODEL_VERSION
-# os.environ["TRACKING_SERVER_ARN"] = TRACKING_SERVER_ARN
-# os.environ["LOG_TABLE"] = LOG_TABLE
-
 with open(os.environ["GITHUB_ENV"], "a") as f:
     f.write(f"MODEL_NAME={MODEL_NAME}\n")
-    f.write(f"MODEL_VERSION={MODEL_NAME}\n")
-    f.write(f"TRACKING_SERVER_ARN={MODEL_NAME}\n")
-    f.write(f"LOG_TABLE={MODEL_NAME}\n")
+    f.write(f"MODEL_VERSION={MODEL_VERSION}\n")
+    f.write(f"TRACKING_SERVER_ARN={TRACKING_SERVER_ARN}\n")
+    f.write(f"LOG_TABLE={LOG_TABLE}\n")
