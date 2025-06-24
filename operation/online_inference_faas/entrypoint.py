@@ -42,7 +42,7 @@ def lambda_handler(event, context):
             "amt_vel_last_2mths": Decimal(str(event['body']['data']["amt_vel_last_2mths"]))
         }
     )
-
+    # Return prediction
     return {
         'statusCode': 200,
         'body': json.dumps({'prediction': float(pred)})
