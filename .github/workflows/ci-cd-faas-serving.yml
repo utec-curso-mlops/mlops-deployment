@@ -46,7 +46,7 @@ jobs:
         run: docker tag "utec-mlops/${{ github.actor }}/online-prediction-faas:latest" "${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest"
       - name: Push image
         run: docker push "${{ vars.ECR_URL }}/utec-mlops/${{ github.actor }}/online-prediction-faas:latest"
-      - name: Set environment variables
+      - name: Set environment variables and create logging table
         run: python operation/online_inference_faas/faas_utils.py
       - name: Create or update Lambda function
         run: |
@@ -77,5 +77,7 @@ jobs:
               --function-name "$FUNCTION_NAME" \
               --environment "Variables={MODEL_NAME=${{ env.MODEL_NAME }},MODEL_VERSION=${{ env.MODEL_VERSION }},TRACKING_SERVER_ARN=${{ env.TRACKING_SERVER_ARN }},LOG_TABLE=${{ env.LOG_TABLE }}}" 
           fi
+      - name: Wait for Lambda creation
+        run:  sleep 5
       - name: Integration testing
         run:  pytest operation/online_inference_faas/tests/test_integration.py -vv

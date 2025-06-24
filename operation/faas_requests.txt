@@ -1,0 +1,24 @@
+{"body": {"data": {"transaction_id":"96ac4e19ab6c","cod_month":202501,"card_present":1,"trx_vel_last_1mths":5,"trx_vel_last_2mths":7,"amt_vel_last_1mths":476.0262,"amt_vel_last_2mths":632.6047}}}
+
+
+{"body": {"data": {"transaction_id":"8089d7605cdc","cod_month":202501,"card_present":0,"trx_vel_last_1mths":6,"trx_vel_last_2mths":8,"amt_vel_last_1mths":571.4044,"amt_vel_last_2mths":727.9829}}}
+
+
+{"body": {"data": {"transaction_id":"19e5393c0d31","cod_month":202501,"card_present":1,"trx_vel_last_1mths":2,"trx_vel_last_2mths":6,"amt_vel_last_1mths":175.6206,"amt_vel_last_2mths":879.8873}}}
+
+
+{"body": {"data": {"transaction_id":"492e92a56b43","cod_month":202501,"card_present":1,"trx_vel_last_1mths":3,"trx_vel_last_2mths":5,"amt_vel_last_1mths":388.54758,"amt_vel_last_2mths":711.9269}}}
+
+
+{"body": {"data": {"transaction_id":"263521c0eb5d","cod_month":202501,"card_present":0,"trx_vel_last_1mths":4,"trx_vel_last_2mths":6,"amt_vel_last_1mths":567.66156,"amt_vel_last_2mths":891.0409}}}
+
+{"body": {"data": {"transaction_id":"ffc7b815bf41","cod_month":202501,"card_present":1,"trx_vel_last_1mths":5,"trx_vel_last_2mths":7,"amt_vel_last_1mths":753.68695,"amt_vel_last_2mths":1077.0663}}}
+
+{"body": {"data": {"transaction_id":"cb36fccb9b68","cod_month":202501,"card_present":0,"trx_vel_last_1mths":4,"trx_vel_last_2mths":6,"amt_vel_last_1mths":667.87866,"amt_vel_last_2mths":859.8155}}}
+
+{"body": {"data": {"transaction_id":"ca63c91d8c77","cod_month":202501,"card_present":1,"trx_vel_last_1mths":3,"trx_vel_last_2mths":6,"amt_vel_last_1mths":310.17743,"amt_vel_last_2mths":543.0697}}}
+
+{"body": {"data": {"transaction_id":"65faa84a083c","cod_month":202501,"card_present":1,"trx_vel_last_1mths":3,"trx_vel_last_2mths":7,"amt_vel_last_1mths":450.68726,"amt_vel_last_2mths":983.5444}}}
+
+{"body": {"data": {"transaction_id":"65930a764da2","cod_month":202501,"card_present":1,"trx_vel_last_1mths":4,"trx_vel_last_2mths":10,"amt_vel_last_1mths":640.6695,"amt_vel_last_2mths":1391.082}}}
+
