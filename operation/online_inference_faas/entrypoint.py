@@ -12,7 +12,7 @@ model_version = os.getenv("MODEL_VERSION")
 model_uri = f"models:/{model_name}/{model_version}"
 
 # Set tracking server
-tracking_server_arn = os.getenvt("TRACKING_SERVER_ARN")
+tracking_server_arn = os.getenv("TRACKING_SERVER_ARN")
 print(tracking_server_arn)
 #tracking_server_arn = 'arn:aws:sagemaker:us-east-1:654654589924:mlflow-tracking-server/mlops-utec-mlflow-server'
 
