@@ -1,15 +1,20 @@
 import mlflow
 import json
-#from faas_utils import TRACKING_SERVER_ARN, MODEL_NAME, MODEL_VERSION
+import os
 
 # Load model
 # Load model
-model_name = "credit-card-fraud-detection"
-model_version = "latest"
+#model_name = "credit-card-fraud-detection"
+#model_version = "latest"
+
+model_name = os.getenv("MODEL_NAME")
+model_version = os.getenv("MODEL_VERSION")
 model_uri = f"models:/{model_name}/{model_version}"
 
 # Set tracking server
-tracking_server_arn = 'arn:aws:sagemaker:us-east-1:654654589924:mlflow-tracking-server/mlops-utec-mlflow-server'
+tracking_server_arn = os.getenvt("TRACKING_SERVER_ARN")
+print(tracking_server_arn)
+#tracking_server_arn = 'arn:aws:sagemaker:us-east-1:654654589924:mlflow-tracking-server/mlops-utec-mlflow-server'
 
 #model_uri = f"models:/{MODEL_NAME}/{MODEL_VERSION}"
 
